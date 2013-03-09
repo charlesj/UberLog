@@ -1,0 +1,4 @@
+regular expressions
+
+"(.*?)"  - give me everything between two quotation marks
+<(.*?)> - give me everytying between opening and closing brackets
