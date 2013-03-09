@@ -9,6 +9,8 @@
 
 namespace TFLogs
 {
+	using System.Text.RegularExpressions;
+
 	/// <summary>
 	/// The player.
 	/// </summary>
@@ -28,5 +30,28 @@ namespace TFLogs
 		/// Gets or sets the steam id.
 		/// </summary>
 		public string SteamId { get; set; }
+
+		/// <summary>
+		/// Gets or sets the team.
+		/// </summary>
+		public Team Team { get; set; }
+
+		public void Parse()
+		{
+			var noquote = this.RawText.Replace("\"", string.Empty);
+			var angleRegex = new Regex("(?<=<)(.*?)(?=>)");
+			var matches = angleRegex.Matches(noquote); // should be 3 matches
+			this.Name = noquote.Substring(0, noquote.IndexOf('<'));
+			this.SteamId = matches[1].Value;//.Replace("<", string.Empty);
+			var team = matches[2].Value;
+			if (team == "Red")
+			{
+				this.Team = Team.RED;
+			}
+			else
+			{
+				this.Team = Team.BLU;
+			}
+		}
 	}
 }

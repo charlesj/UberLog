@@ -9,6 +9,8 @@
 
 namespace TFLogs.Events
 {
+	using System.Text.RegularExpressions;
+
 	/// <summary>
 	/// The built object event.
 	/// </summary>
@@ -39,11 +41,29 @@ namespace TFLogs.Events
 		public Player Player { get; set; }
 
 		/// <summary>
+		/// Gets or sets the position.
+		/// </summary>
+		public Position Position { get; set; }
+
+		/// <summary>
 		/// The parse.
 		/// </summary>
 		public override void Parse()
 		{
-			throw new System.NotImplementedException();
+			var quotationMatches = this.QuoteRegex.Matches(this.RawText); // there should be 7 matches player, triggered, builtobject, (object, obj_*, )(position, position
+			var playerString = quotationMatches[0].Value;
+			var objectString = quotationMatches[4].Value;
+			var positionFlat = quotationMatches[6].Value;
+			
+			this.Player = new Player();
+			this.Player.RawText = playerString;
+			this.Player.Parse();
+
+			var positionArray = positionFlat.Split(' ');
+			this.Position = new Position();
+			this.Position.X = int.Parse(positionArray[0]);
+			this.Position.Y = int.Parse(positionArray[1]);
+			this.Position.Z = int.Parse(positionArray[2]);
 		}
 	}
 }

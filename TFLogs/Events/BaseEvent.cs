@@ -10,12 +10,28 @@
 namespace TFLogs.Events
 {
 	using System;
+	using System.Diagnostics.CodeAnalysis;
+	using System.Text.RegularExpressions;
 
 	/// <summary>
 	/// The base entry type.
 	/// </summary>
 	public abstract class BaseEvent : IEvent
 	{
+		/// <summary>
+		/// The quote regex.
+		/// </summary>
+		[SuppressMessage("StyleCop.CSharp.NamingRules", "SA1306:FieldNamesMustBeginWithLowerCaseLetter", Justification = "Reviewed. Suppression is OK here."),
+		 SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1401:FieldsMustBePrivate", Justification = "Reviewed. Suppression is OK here.")]
+		protected Regex QuoteRegex = new Regex("(?<=:?\")(.*?)(?=:?\")");
+
+		/// <summary>
+		/// The angle bracket regex.
+		/// </summary>
+		[SuppressMessage("StyleCop.CSharp.NamingRules", "SA1306:FieldNamesMustBeginWithLowerCaseLetter", Justification = "Reviewed. Suppression is OK here."),
+		 SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1401:FieldsMustBePrivate", Justification = "Reviewed. Suppression is OK here.")]
+		protected Regex AngleBracketRegex = new Regex("(?<=<)(.*?)(?=>)");
+		
 		/// <summary>
 		/// Gets or sets the name.
 		/// </summary>
