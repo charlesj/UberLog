@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFLogs", "TFLogs\TFLogs.csproj", "{A41FC382-3A3B-4CFA-868F-6101D28859A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFLogs.Console", "TFLogs.Console\TFLogs.Console.csproj", "{7A395500-3D3D-4C32-B681-1548FFB23CC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFLogs.Tests", "TFLogs.Tests\TFLogs.Tests.csproj", "{9B36FF1A-C51D-4003-BAE2-C5A7DE4AF50A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A41FC382-3A3B-4CFA-868F-6101D28859A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A41FC382-3A3B-4CFA-868F-6101D28859A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A41FC382-3A3B-4CFA-868F-6101D28859A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A41FC382-3A3B-4CFA-868F-6101D28859A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A395500-3D3D-4C32-B681-1548FFB23CC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A395500-3D3D-4C32-B681-1548FFB23CC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A395500-3D3D-4C32-B681-1548FFB23CC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A395500-3D3D-4C32-B681-1548FFB23CC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B36FF1A-C51D-4003-BAE2-C5A7DE4AF50A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B36FF1A-C51D-4003-BAE2-C5A7DE4AF50A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B36FF1A-C51D-4003-BAE2-C5A7DE4AF50A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B36FF1A-C51D-4003-BAE2-C5A7DE4AF50A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
