@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{65B896
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UberLog", "UberLog\UberLog.csproj", "{265BE212-7909-44BD-A3C7-45A681D5D46B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UberLog.Tests", "UberLog.Tests\UberLog.Tests.csproj", "{A5FE3124-12C2-4359-BCAC-5B5D95913012}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{265BE212-7909-44BD-A3C7-45A681D5D46B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{265BE212-7909-44BD-A3C7-45A681D5D46B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{265BE212-7909-44BD-A3C7-45A681D5D46B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5FE3124-12C2-4359-BCAC-5B5D95913012}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5FE3124-12C2-4359-BCAC-5B5D95913012}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5FE3124-12C2-4359-BCAC-5B5D95913012}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5FE3124-12C2-4359-BCAC-5B5D95913012}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
