@@ -46,6 +46,11 @@ namespace UberLog.Events
 		public Position Position { get; set; }
 
 		/// <summary>
+		/// Gets or sets the object built.
+		/// </summary>
+		public GameObject ObjectBuilt { get; set; }
+
+		/// <summary>
 		/// The parse.
 		/// </summary>
 		public override void Parse()
@@ -64,6 +69,8 @@ namespace UberLog.Events
 			this.Position.X = int.Parse(positionArray[0]);
 			this.Position.Y = int.Parse(positionArray[1]);
 			this.Position.Z = int.Parse(positionArray[2]);
+
+			this.ObjectBuilt = GameObject.Get(objectString);
 		}
 	}
 }

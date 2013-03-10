@@ -78,6 +78,7 @@
     <Compile Include="Events\UnknownEvent.cs" />
     <Compile Include="Events\UnparsedEvent.cs" />
     <Compile Include="EventTypes.cs" />
+    <Compile Include="GameObject.cs" />
     <Compile Include="LogFile.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Position.cs" />

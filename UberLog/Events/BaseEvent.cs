@@ -31,7 +31,12 @@ namespace UberLog.Events
 		[SuppressMessage("StyleCop.CSharp.NamingRules", "SA1306:FieldNamesMustBeginWithLowerCaseLetter", Justification = "Reviewed. Suppression is OK here."),
 		 SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1401:FieldsMustBePrivate", Justification = "Reviewed. Suppression is OK here.")]
 		protected Regex AngleBracketRegex = new Regex("(?<=<)(.*?)(?=>)");
-		
+
+		/// <summary>
+		/// The raw text.
+		/// </summary>
+		private string rawText;
+
 		/// <summary>
 		/// Gets or sets the name.
 		/// </summary>
@@ -40,7 +45,19 @@ namespace UberLog.Events
 		/// <summary>
 		/// Gets or sets the raw text.
 		/// </summary>
-		public string RawText { get; set; }
+		public string RawText
+		{
+			get
+			{
+				return this.rawText;
+			}
+
+			set
+			{
+				this.rawText = value;
+				this.ParseDate();
+			}
+		}
 
 		/// <summary>
 		/// Gets or sets the keystone.
@@ -56,5 +73,15 @@ namespace UberLog.Events
 		/// The parse.
 		/// </summary>
 		public abstract void Parse();
+
+		/// <summary>
+		/// Figures out the date from the raw text
+		/// </summary>
+		private void ParseDate()
+		{
+			var text = this.rawText.Substring(0, 23);
+			text = text.Replace("L", string.Empty).Replace("-", string.Empty);
+			this.EventTime = DateTime.Parse(text);
+		}
 	}
 }
