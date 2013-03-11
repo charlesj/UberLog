@@ -31,6 +31,8 @@ namespace UberLog
 			GameObjects = new List<GameObject>();
 			GameObjects.Add(new GameObject { Name = "Sentry Gun", Code = "OBJ_SENTRYGUN" });
 			GameObjects.Add(new GameObject { Name = "Sapper", Code = "OBJ_ATTACHMENT_SAPPER" });
+			GameObjects.Add(new GameObject { Name = "Dispenser", Code = "OBJ_DISPENSER" });
+			GameObjects.Add(new GameObject { Name = "Teleporter", Code = "OBJ_TELEPORTER" });
 		}
 
 		/// <summary>

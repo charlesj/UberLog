@@ -33,7 +33,7 @@ namespace TFLogs.Tests
 		}
 
 		[Theory,
-		PropertyData("PlayerName")]
+		PropertyData("PlayerNames")]
 		public void SetsPlayerName(string logText, string playerName)
 		{
 			var buildObjectEvent = new BuiltObjectEvent { RawText = logText };
@@ -80,12 +80,12 @@ namespace TFLogs.Tests
 			Assert.Equal(objectName, buildObjectEvent.ObjectBuilt.Name);
 		}
 
-		[Fact]
-		public void SetsDateTimeCorrectly()
+		[Theory,
+		PropertyData("EventTimes")]
+		public void SetsDateTimeCorrectly(string logText, DateTime expectedDate)
 		{
-			var buildObjectEvent = new BuiltObjectEvent { RawText = Logs[0] };
+			var buildObjectEvent = new BuiltObjectEvent { RawText = logText };
 			buildObjectEvent.Parse();
-			var expectedDate = new DateTime(2013, 3, 4, 20, 22, 45);
 			Assert.Equal(expectedDate, buildObjectEvent.EventTime);
 		}
 
@@ -93,18 +93,15 @@ namespace TFLogs.Tests
 		{
 			get
 			{
-				return Logs.Select(l => new object[] { l });
+				return Logs.Select(l => new object[] { l.LogText });
 			}
 		}
 
-		public static IEnumerable<object[]> PlayerName
+		public static IEnumerable<object[]> PlayerNames
 		{
 			get
 			{
-				var rtn = new List<object[]>();
-				rtn.Add(new object[] { Logs[0], "ranroll.esg" });
-				rtn.Add(new object[] { Logs[1], "Eisen under new managment." });
-				return rtn;
+				return Logs.Select(l => new object[] { l.LogText, l.PlayerName });
 			}
 		}
 
@@ -112,10 +109,7 @@ namespace TFLogs.Tests
 		{
 			get
 			{
-				var rtn = new List<object[]>();
-				rtn.Add(new object[] { Logs[0], "STEAM_0:1:10233891" });
-				rtn.Add(new object[] { Logs[1], "STEAM_0:0:17640804" });
-				return rtn;
+				return Logs.Select(l => new object[] { l.LogText, l.SteamId });
 			}
 		}
 			
@@ -123,10 +117,7 @@ namespace TFLogs.Tests
 		{
 			get
 			{
-				var rtn = new List<object[]>();
-				rtn.Add(new object[] { Logs[0], Team.RED });
-				rtn.Add(new object[] { Logs[1], Team.RED });
-				return rtn;
+				return Logs.Select(l => new object[] { l.LogText, l.Team });
 			}
 		}
 
@@ -134,10 +125,7 @@ namespace TFLogs.Tests
 		{
 			get
 			{
-				var rtn = new List<object[]>();
-				rtn.Add(new object[] { Logs[0], new Position { X = 1561, Y = -1420, Z = -403 } });
-				rtn.Add(new object[] { Logs[1], new Position { X = -528, Y = -197, Z = -223 } });
-				return rtn;
+				return Logs.Select(l => new object[] { l.LogText, l.Position });
 			}
 		}
 		
@@ -145,23 +133,93 @@ namespace TFLogs.Tests
 		{
 			get
 			{
-				var rtn = new List<object[]>();
-				rtn.Add(new object[] { Logs[0], "Sentry Gun" });
-				rtn.Add(new object[] { Logs[1], "Sapper" });
-				return rtn;
+				return Logs.Select(l => new object[] { l.LogText, l.ObjectName });
 			}
 		}
 
-		private static List<string> Logs
+		public static IEnumerable<object[]> EventTimes
 		{
 			get
 			{
-				return new List<string>
+				return Logs.Select(l => new object[] { l.LogText, l.DateTime });
+			}
+		}
+
+		private static List<LogInfo> Logs
+		{
+			get
+			{
+				return new List<LogInfo>
 					           {
-						           "L 03/04/2013 - 20:22:45: \"ranroll.esg<9><STEAM_0:1:10233891><Red>\" triggered \"builtobject\" (object \"OBJ_SENTRYGUN\") (position \"1561 -1420 -403\")",
-						           "L 03/04/2013 - 20:31:33: \"Eisen under new managment.<14><STEAM_0:0:17640804><Red>\" triggered \"builtobject\" (object \"OBJ_ATTACHMENT_SAPPER\") (position \"-528 -197 -223\")"
+						           new LogInfo 
+								   {
+									   LogText = "L 03/04/2013 - 20:22:45: \"ranroll.esg<9><STEAM_0:1:10233891><Red>\" triggered \"builtobject\" (object \"OBJ_SENTRYGUN\") (position \"1561 -1420 -403\")",
+									   ObjectName = "Sentry Gun",
+									   PlayerName = "ranroll.esg",
+									   SteamId = "STEAM_0:1:10233891",
+									   Team = Team.RED,
+									   Position = new Position { X = 1561, Y = -1420, Z = -403 },
+									   DateTime = new DateTime(2013, 3, 4, 20,22,45)
+								   },
+						           new LogInfo
+								   {
+									   LogText = "L 03/04/2013 - 20:31:33: \"Eisen under new managment.<14><STEAM_0:0:17640804><Red>\" triggered \"builtobject\" (object \"OBJ_ATTACHMENT_SAPPER\") (position \"-528 -197 -223\")",
+									   ObjectName = "Sapper",
+									   Team = Team.RED,
+									   PlayerName = "Eisen under new managment.",
+									   SteamId = "STEAM_0:0:17640804",
+									   Position = new Position { X = -528, Y = -197, Z = -223 },
+									   DateTime = new DateTime(2013, 3, 4, 20, 31, 33)
+								   },
+								   new LogInfo
+									{
+										LogText = "L 03/04/2013 - 20:32:17: \"Danny-O.thc<17><STEAM_0:1:19665436><Blue>\" triggered \"builtobject\" (object \"OBJ_SENTRYGUN\") (position \"201 -3179 -570\")",
+										DateTime = new DateTime(2013, 3, 4, 20, 32, 17),
+										ObjectName = "Sentry Gun",
+										PlayerName = "Danny-O.thc",
+										Position = new Position { X = 201, Y = -3179, Z = -570 },
+										SteamId = "STEAM_0:1:19665436",
+										Team = Team.BLU
+									},
+									new LogInfo
+									{
+										LogText = "L 03/04/2013 - 20:32:50: \"ranroll.esg<9><STEAM_0:1:10233891><Red>\" triggered \"builtobject\" (object \"OBJ_DISPENSER\") (position \"1546 -1069 -372\")",
+										DateTime = new DateTime(2013, 3, 4, 20, 32, 50),
+										ObjectName = "Dispenser",
+										PlayerName = "ranroll.esg",
+										Position = new Position { X = 1546, Y = -1069, Z = -372 },
+										SteamId = "STEAM_0:1:10233891",
+										Team = Team.RED
+									},
+									new LogInfo
+									{
+										LogText = "L 03/04/2013 - 20:36:51: \"ranroll.esg<9><STEAM_0:1:10233891><Blue>\" triggered \"builtobject\" (object \"OBJ_TELEPORTER\") (position \"412 -3048 -575\")",
+										DateTime = new DateTime(2013, 3, 4, 20, 36, 51),
+										ObjectName = "Teleporter",
+										PlayerName = "ranroll.esg",
+										Position = new Position { X = 412, Y = -3048, Z = -575 },
+										SteamId = "STEAM_0:1:10233891",
+										Team = Team.BLU
+									}
 					           };
 			}
+		}
+		
+		internal class LogInfo
+		{
+			public string LogText { get; set; }
+
+			public string PlayerName { get; set; }
+
+			public Team Team { get; set; }
+
+			public string ObjectName { get; set;}
+
+			public string SteamId { get; set; }
+
+			public Position Position { get; set; }
+
+			public DateTime DateTime { get; set; }
 		}
 	}
 }
