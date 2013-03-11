@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace TFLogs.Tests
+namespace UberLog.Tests
 {
 	using System;
 	using System.Collections.Generic;
@@ -16,6 +16,7 @@ namespace TFLogs.Tests
 
 	using UberLog;
 	using UberLog.Events;
+	using UberLog.Tests.Events;
 
 	using Xunit;
 	using Xunit.Extensions;
@@ -25,47 +26,36 @@ namespace TFLogs.Tests
 	{
 		[Theory,
 		PropertyData("BaseLogs")]
-		public void SetsPlayer(string logText)
+		public void SetsPlayer(BuiltObjectEvent buildObjectEvent)
 		{
-			var buildObjectEvent = new BuiltObjectEvent { RawText = logText };
-			buildObjectEvent.Parse();
 			Assert.NotNull(buildObjectEvent.Player);
 		}
 
 		[Theory,
 		PropertyData("PlayerNames")]
-		public void SetsPlayerName(string logText, string playerName)
+		public void SetsPlayerName(BuiltObjectEvent buildObjectEvent, string playerName)
 		{
-			var buildObjectEvent = new BuiltObjectEvent { RawText = logText };
-			buildObjectEvent.Parse();
 			Assert.Equal(playerName, buildObjectEvent.Player.Name);
 		}
 
 		[Theory,
 		PropertyData("PlayerSteamIds")]
-		public void SetsPlayerSteamIdCorrectly(string logText, string steamId)
+		public void SetsPlayerSteamIdCorrectly(BuiltObjectEvent buildObjectEvent, string steamId)
 		{
-			var buildObjectEvent = new BuiltObjectEvent { RawText = logText };
-			buildObjectEvent.Parse();
 			Assert.Equal(steamId, buildObjectEvent.Player.SteamId);
 		}
 
 		[Theory,
 		PropertyData("PlayerTeams")]
-		public void SetsPlayerTeamCorrectly(string logText, Team team)
+		public void SetsPlayerTeamCorrectly(BuiltObjectEvent buildObjectEvent, Team team)
 		{
-			var buildObjectEvent = new BuiltObjectEvent { RawText = logText };
-			buildObjectEvent.Parse();
 			Assert.Equal(team, buildObjectEvent.Player.Team);
 		}
 
 		[Theory,
 		PropertyData("Positions")]
-		public void SetsPositionCorrectly(string logText, Position position)
+		public void SetsPositionCorrectly(BuiltObjectEvent buildObjectEvent, Position position)
 		{
-			var buildObjectEvent = new BuiltObjectEvent { RawText = logText };
-			buildObjectEvent.Parse();
-
 			Assert.Equal(position.X, buildObjectEvent.Position.X);
 			Assert.Equal(position.Y, buildObjectEvent.Position.Y);
 			Assert.Equal(position.Z, buildObjectEvent.Position.Z);
@@ -73,19 +63,15 @@ namespace TFLogs.Tests
 
 		[Theory,
 		PropertyData("ObjectsBuilt")]
-		public void SetsObjectBuilt(string logText, string objectName)
+		public void SetsObjectBuilt(BuiltObjectEvent buildObjectEvent, string objectName)
 		{
-			var buildObjectEvent = new BuiltObjectEvent { RawText = logText };
-			buildObjectEvent.Parse();
 			Assert.Equal(objectName, buildObjectEvent.ObjectBuilt.Name);
 		}
 
 		[Theory,
 		PropertyData("EventTimes")]
-		public void SetsDateTimeCorrectly(string logText, DateTime expectedDate)
+		public void SetsDateTimeCorrectly(BuiltObjectEvent buildObjectEvent, DateTime expectedDate)
 		{
-			var buildObjectEvent = new BuiltObjectEvent { RawText = logText };
-			buildObjectEvent.Parse();
 			Assert.Equal(expectedDate, buildObjectEvent.EventTime);
 		}
 
@@ -93,7 +79,7 @@ namespace TFLogs.Tests
 		{
 			get
 			{
-				return Logs.Select(l => new object[] { l.LogText });
+				return Logs.Select(l => new object[] { EventTestHelpers.BuildAndParse<BuiltObjectEvent>(l.LogText) });
 			}
 		}
 
@@ -101,7 +87,7 @@ namespace TFLogs.Tests
 		{
 			get
 			{
-				return Logs.Select(l => new object[] { l.LogText, l.PlayerName });
+				return Logs.Select(l => new object[] { EventTestHelpers.BuildAndParse<BuiltObjectEvent>(l.LogText), l.PlayerName });
 			}
 		}
 
@@ -109,7 +95,7 @@ namespace TFLogs.Tests
 		{
 			get
 			{
-				return Logs.Select(l => new object[] { l.LogText, l.SteamId });
+				return Logs.Select(l => new object[] { EventTestHelpers.BuildAndParse<BuiltObjectEvent>(l.LogText), l.SteamId });
 			}
 		}
 			
@@ -117,7 +103,7 @@ namespace TFLogs.Tests
 		{
 			get
 			{
-				return Logs.Select(l => new object[] { l.LogText, l.Team });
+				return Logs.Select(l => new object[] { EventTestHelpers.BuildAndParse<BuiltObjectEvent>(l.LogText), l.Team });
 			}
 		}
 
@@ -125,7 +111,7 @@ namespace TFLogs.Tests
 		{
 			get
 			{
-				return Logs.Select(l => new object[] { l.LogText, l.Position });
+				return Logs.Select(l => new object[] { EventTestHelpers.BuildAndParse<BuiltObjectEvent>(l.LogText), l.Position });
 			}
 		}
 		
@@ -133,7 +119,7 @@ namespace TFLogs.Tests
 		{
 			get
 			{
-				return Logs.Select(l => new object[] { l.LogText, l.ObjectName });
+				return Logs.Select(l => new object[] { EventTestHelpers.BuildAndParse<BuiltObjectEvent>(l.LogText), l.ObjectName });
 			}
 		}
 
@@ -141,7 +127,7 @@ namespace TFLogs.Tests
 		{
 			get
 			{
-				return Logs.Select(l => new object[] { l.LogText, l.DateTime });
+				return Logs.Select(l => new object[] { EventTestHelpers.BuildAndParse<BuiltObjectEvent>(l.LogText), l.DateTime });
 			}
 		}
 
@@ -159,7 +145,7 @@ namespace TFLogs.Tests
 									   SteamId = "STEAM_0:1:10233891",
 									   Team = Team.RED,
 									   Position = new Position { X = 1561, Y = -1420, Z = -403 },
-									   DateTime = new DateTime(2013, 3, 4, 20,22,45)
+									   DateTime = new DateTime(2013, 3, 4, 20, 22, 45)
 								   },
 						           new LogInfo
 								   {
@@ -213,13 +199,15 @@ namespace TFLogs.Tests
 
 			public Team Team { get; set; }
 
-			public string ObjectName { get; set;}
+			public string ObjectName { get; set; }
 
 			public string SteamId { get; set; }
 
 			public Position Position { get; set; }
 
 			public DateTime DateTime { get; set; }
+
+			public BuiltObjectEvent BuildObjectEvent { get; set; }
 		}
 	}
 }

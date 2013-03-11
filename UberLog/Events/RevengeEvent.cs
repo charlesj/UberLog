@@ -36,8 +36,6 @@ namespace UberLog.Events
 		/// <summary>
 		/// The parse.
 		/// </summary>
-		/// <exception cref="NotImplementedException">
-		/// </exception>
 		public override void Parse()
 		{
 			throw new System.NotImplementedException();

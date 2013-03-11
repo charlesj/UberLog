@@ -1,3 +1,12 @@
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SteamValidationEvent.cs" company="Josh Charles">
+//   Licensed under the GPL.
+// </copyright>
+// <summary>
+//   The steam validation event.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 namespace UberLog.Events
 {
 	/// <summary>

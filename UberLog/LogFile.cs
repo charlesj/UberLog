@@ -11,8 +11,6 @@ namespace UberLog
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Linq;
-	using System.Reflection;
 
 	using UberLog.Events;
 
@@ -51,9 +49,10 @@ namespace UberLog
 						found = true;
 					}
 				}
+
 				if (!found)
 				{
-					this.Events.Add(new UnknownEvent() { RawText = rawevent.RawText});
+					this.Events.Add(new UnknownEvent() { RawText = rawevent.RawText });
 				}
 			}
 		}

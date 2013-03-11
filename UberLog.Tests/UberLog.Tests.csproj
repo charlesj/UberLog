@@ -48,10 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Events\BuildObjectEventTests.cs" />
+    <Compile Include="Events\CaptureBlockedEventTests.cs" />
+    <Compile Include="Events\EventTestHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UberLog\UberLog.csproj">

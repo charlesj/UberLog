@@ -34,11 +34,42 @@ namespace UberLog.Events
 		public override string Keystone { get; protected set; }
 
 		/// <summary>
+		/// Gets or sets the player.
+		/// </summary>
+		public Player Player { get; set; }
+
+		/// <summary>
+		/// Gets or sets the point number.
+		/// </summary>
+		public int PointNumber { get; set; }
+
+		/// <summary>
+		/// Gets or sets the point name.
+		/// </summary>
+		public string PointName { get; set; }
+
+		/// <summary>
+		/// Gets or sets the position.
+		/// </summary>
+		public Position Position { get; set; }
+
+		/// <summary>
 		/// The parse.
 		/// </summary>
 		public override void Parse()
 		{
-			throw new System.NotImplementedException();
+			var matches = this.GetRegexMatches(); // returns 9 matches
+			var playerString = matches[0].Value;
+			var pointNumberString = matches[4].Value;
+			var pointNameString = matches[6].Value;
+			var positionstring = matches[8].Value;
+
+			this.Player = new Player { RawText = playerString };
+			this.Player.Parse();
+
+			this.PointNumber = int.Parse(pointNumberString);
+			this.PointName = pointNameString;
+			this.Position = this.PositionHelper(positionstring);
 		}
 	}
 }

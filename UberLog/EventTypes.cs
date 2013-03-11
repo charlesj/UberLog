@@ -25,23 +25,23 @@ namespace UberLog
 		/// The get all.
 		/// </summary>
 		/// <returns>
-		/// The <see cref="List"/>.
+		/// A list of all event types.
 		/// </returns>
 		public static List<Type> GetAll()
 		{
 			return Assembly.GetAssembly(typeof(IEvent)).GetTypes().Where(t => typeof(IEvent).IsAssignableFrom(t) && !t.IsAbstract).ToList();
 		}
 
-		public static List<IEvent> GetInstancesOfAll()
+		/// <summary>
+		/// The get instances of all.
+		/// </summary>
+		/// <returns>
+		/// A list of instances of all events
+		/// </returns>
+		public static List<IEvent> GetInstancesOfAllEvents()
 		{
-			List<IEvent> instances = new List<IEvent>();
 			var types = GetAll();
-			foreach (var type in types)
-			{
-				var instance = (IEvent)Activator.CreateInstance(type);
-				instances.Add(instance);
-			}
-			return instances;
+			return types.Select(type => (IEvent)Activator.CreateInstance(type)).ToList();
 		}
 	}
 }
