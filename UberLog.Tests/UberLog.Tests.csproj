@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Events\BuildObjectEventTests.cs" />
     <Compile Include="Events\CaptureBlockedEventTests.cs" />
+    <Compile Include="Events\ChangedNameEventTests.cs" />
     <Compile Include="Events\EventTestHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

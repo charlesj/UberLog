@@ -39,7 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntryType.cs" />
     <Compile Include="Events\BaseEvent.cs" />
     <Compile Include="Events\BuiltObjectEvent.cs" />
     <Compile Include="Events\CaptureBlockedEvent.cs" />
