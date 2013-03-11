@@ -75,6 +75,36 @@ namespace UberLog.Events
 		public abstract void Parse();
 
 		/// <summary>
+		/// The get regex matches.
+		/// </summary>
+		/// <returns>
+		/// The <see cref="MatchCollection"/>.
+		/// </returns>
+		protected MatchCollection GetRegexMatches()
+		{
+			return this.QuoteRegex.Matches(this.rawText);
+		}
+
+		/// <summary>
+		/// The position helper.
+		/// </summary>
+		/// <param name="positionString">
+		/// The position string.
+		/// </param>
+		/// <returns>
+		/// The <see cref="Position"/>.
+		/// </returns>
+		protected Position PositionHelper(string positionString)
+		{
+			var positionArray = positionString.Split(' ');
+			var position = new Position();
+			position.X = int.Parse(positionArray[0]);
+			position.Y = int.Parse(positionArray[1]);
+			position.Z = int.Parse(positionArray[2]);
+			return position;
+		}
+
+		/// <summary>
 		/// Figures out the date from the raw text
 		/// </summary>
 		private void ParseDate()

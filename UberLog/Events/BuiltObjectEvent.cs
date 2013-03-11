@@ -9,8 +9,6 @@
 
 namespace UberLog.Events
 {
-	using System.Text.RegularExpressions;
-
 	/// <summary>
 	/// The built object event.
 	/// </summary>
@@ -55,20 +53,15 @@ namespace UberLog.Events
 		/// </summary>
 		public override void Parse()
 		{
-			var quotationMatches = this.QuoteRegex.Matches(this.RawText); // there should be 7 matches player, triggered, builtobject, (object, obj_*, )(position, position
+			var quotationMatches = this.GetRegexMatches(); // there should be 7 matches player, triggered, builtobject, (object, obj_*, )(position, position
 			var playerString = quotationMatches[0].Value;
 			var objectString = quotationMatches[4].Value;
-			var positionFlat = quotationMatches[6].Value;
+			var positionString = quotationMatches[6].Value;
 			
-			this.Player = new Player();
-			this.Player.RawText = playerString;
+			this.Player = new Player { RawText = playerString };
 			this.Player.Parse();
 
-			var positionArray = positionFlat.Split(' ');
-			this.Position = new Position();
-			this.Position.X = int.Parse(positionArray[0]);
-			this.Position.Y = int.Parse(positionArray[1]);
-			this.Position.Z = int.Parse(positionArray[2]);
+			this.Position = this.PositionHelper(positionString);
 
 			this.ObjectBuilt = GameObject.Get(objectString);
 		}
