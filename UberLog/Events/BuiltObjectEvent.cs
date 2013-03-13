@@ -57,9 +57,8 @@ namespace UberLog.Events
 			var playerString = quotationMatches[0].Value;
 			var objectString = quotationMatches[4].Value;
 			var positionString = quotationMatches[6].Value;
-			
-			this.Player = new Player { RawText = playerString };
-			this.Player.Parse();
+
+		    this.Player = this.PlayerHelper(playerString);
 
 			this.Position = this.PositionHelper(positionString);
 

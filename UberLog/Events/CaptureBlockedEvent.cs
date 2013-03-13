@@ -64,8 +64,7 @@ namespace UberLog.Events
 			var pointNameString = matches[6].Value;
 			var positionstring = matches[8].Value;
 
-			this.Player = new Player { RawText = playerString };
-			this.Player.Parse();
+		    this.Player = this.PlayerHelper(playerString);
 
 			this.PointNumber = int.Parse(pointNumberString);
 			this.PointName = pointNameString;
