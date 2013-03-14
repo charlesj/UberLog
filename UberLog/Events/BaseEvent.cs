@@ -104,6 +104,22 @@ namespace UberLog.Events
 			return position;
 		}
 
+	    /// <summary>
+	    /// The player helper.
+	    /// </summary>
+	    /// <param name="playerString">
+	    /// The player string.
+	    /// </param>
+	    /// <returns>
+	    /// The <see cref="Player"/>.
+	    /// </returns>
+	    protected Player PlayerHelper(string playerString)
+		{
+			var player = new Player { RawText = playerString };
+			player.Parse();
+			return player;
+		}
+
 		/// <summary>
 		/// Figures out the date from the raw text
 		/// </summary>

@@ -57,8 +57,7 @@ namespace UberLog.Events
 			var playerString = matches[0].Value;
 			var newNameString = matches[2].Value;
 
-			this.Player = new Player { RawText = playerString };
-			this.Player.Parse();
+		    this.Player = this.PlayerHelper(playerString);
 			this.NewName = newNameString;
 			this.OldName = this.Player.Name;
 		}

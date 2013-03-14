@@ -33,12 +33,27 @@ namespace UberLog.Events
 		/// </summary>
 		public override string Keystone { get; protected set; }
 
-		/// <summary>
+	    /// <summary>
+	    /// Gets or sets the player.
+	    /// </summary>
+	    public Player Player { get; set; }
+
+	    /// <summary>
+	    /// Gets or sets the message.
+	    /// </summary>
+	    public string Message { get; set; }
+
+	    /// <summary>
 		/// The parse.
 		/// </summary>
 		public override void Parse()
-		{
-			throw new System.NotImplementedException();
-		}
+	    {
+	        var matches = this.GetRegexMatches();
+	        var playerString = matches[0].Value;
+	        var message = matches[2].Value;
+
+	        this.Player = this.PlayerHelper(playerString);
+	        this.Message = message;
+	    }
 	}
 }
