@@ -47,14 +47,7 @@ namespace UberLog
 			this.Name = noquote.Substring(0, noquote.IndexOf('<'));
 			this.SteamId = matches[1].Value; 
 			var team = matches[2].Value;
-			if (team == "Red")
-			{
-				this.Team = Team.RED;
-			}
-			else
-			{
-				this.Team = Team.BLU;
-			}
+			this.Team = Team.GetFromCode(team);
 		}
 	}
 }

@@ -53,6 +53,7 @@
     <Compile Include="Events\ChatEventTests.cs" />
     <Compile Include="Events\ChoseClassEventTests.cs" />
     <Compile Include="Events\ConnectedEventTests.cs" />
+    <Compile Include="Events\CurrentScoreEventTests.cs" />
     <Compile Include="Events\EventTestHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -47,9 +47,9 @@ namespace UberLog.Tests
 
 		[Theory,
 		PropertyData("PlayerTeams")]
-		public void SetsPlayerTeamCorrectly(BuiltObjectEvent buildObjectEvent, Team team)
+		public void SetsPlayerTeamCorrectly(BuiltObjectEvent buildObjectEvent, string teamName)
 		{
-			Assert.Equal(team, buildObjectEvent.Player.Team);
+			Assert.Equal(teamName, buildObjectEvent.Player.Team.Name);
 		}
 
 		[Theory,
@@ -103,7 +103,7 @@ namespace UberLog.Tests
 		{
 			get
 			{
-				return Logs.Select(l => new object[] { EventTestHelpers.BuildAndParse<BuiltObjectEvent>(l.LogText), l.Team });
+				return Logs.Select(l => new object[] { EventTestHelpers.BuildAndParse<BuiltObjectEvent>(l.LogText), l.TeamName });
 			}
 		}
 
@@ -143,7 +143,7 @@ namespace UberLog.Tests
 									   ObjectName = "Sentry Gun",
 									   PlayerName = "ranroll.esg",
 									   SteamId = "STEAM_0:1:10233891",
-									   Team = Team.RED,
+									   TeamName = "RED",
 									   Position = new Position { X = 1561, Y = -1420, Z = -403 },
 									   DateTime = new DateTime(2013, 3, 4, 20, 22, 45)
 								   },
@@ -151,7 +151,7 @@ namespace UberLog.Tests
 								   {
 									   LogText = "L 03/04/2013 - 20:31:33: \"Eisen under new managment.<14><STEAM_0:0:17640804><Red>\" triggered \"builtobject\" (object \"OBJ_ATTACHMENT_SAPPER\") (position \"-528 -197 -223\")",
 									   ObjectName = "Sapper",
-									   Team = Team.RED,
+									   TeamName = "RED",
 									   PlayerName = "Eisen under new managment.",
 									   SteamId = "STEAM_0:0:17640804",
 									   Position = new Position { X = -528, Y = -197, Z = -223 },
@@ -165,7 +165,7 @@ namespace UberLog.Tests
 										PlayerName = "Danny-O.thc",
 										Position = new Position { X = 201, Y = -3179, Z = -570 },
 										SteamId = "STEAM_0:1:19665436",
-										Team = Team.BLU
+										TeamName = "BLU"
 									},
 									new LogInfo
 									{
@@ -175,7 +175,7 @@ namespace UberLog.Tests
 										PlayerName = "ranroll.esg",
 										Position = new Position { X = 1546, Y = -1069, Z = -372 },
 										SteamId = "STEAM_0:1:10233891",
-										Team = Team.RED
+										TeamName = "RED"
 									},
 									new LogInfo
 									{
@@ -185,7 +185,7 @@ namespace UberLog.Tests
 										PlayerName = "ranroll.esg",
 										Position = new Position { X = 412, Y = -3048, Z = -575 },
 										SteamId = "STEAM_0:1:10233891",
-										Team = Team.BLU
+										TeamName = "BLU"
 									}
 					           };
 			}
@@ -197,7 +197,7 @@ namespace UberLog.Tests
 
 			public string PlayerName { get; set; }
 
-			public Team Team { get; set; }
+			public string TeamName { get; set; }
 
 			public string ObjectName { get; set; }
 

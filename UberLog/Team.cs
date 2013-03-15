@@ -9,29 +9,68 @@
 
 namespace UberLog
 {
+	using System.Collections.Generic;
+	using System.Linq;
+
 	/// <summary>
 	///     The team.
 	/// </summary>
-	public enum Team
+	public class Team
 	{
 		/// <summary>
-		///     The unassigned.
+		/// The all teams.
 		/// </summary>
-		Unassigned, 
+		private static List<Team> allTeams;
 
 		/// <summary>
-		///     The spectator.
+		/// Initializes static members of the <see cref="Team"/> class.
 		/// </summary>
-		Spectator, 
+		static Team()
+		{
+			allTeams = new List<Team>
+				    {
+					    new Team { Name = "RED", Code = "Red" },
+					    new Team { Name = "BLU", Code = "Blue" },
+					    new Team { Name = "Unknown", Code = "unknown" },
+					    new Team { Name = "Unassigned", Code = "Unassigned" },
+					    new Team { Name = "Spectator", Code = "spectator" }
+				    };
+		}
 
 		/// <summary>
-		///     The red.
+		/// Prevents a default instance of the <see cref="Team"/> class from being created.
 		/// </summary>
-		RED, 
+		private Team()
+		{
+		}
 
 		/// <summary>
-		///     The blu.
+		/// Gets or sets the name.
 		/// </summary>
-		BLU
+		public string Name { get; set; }
+
+		/// <summary>
+		/// Gets or sets the code.
+		/// </summary>
+		public string Code { get; set; }
+
+		/// <summary>
+		/// The get from code.
+		/// </summary>
+		/// <param name="code">
+		/// The code.
+		/// </param>
+		/// <returns>
+		/// The <see cref="Team"/>.
+		/// </returns>
+		public static Team GetFromCode(string code)
+		{
+			if (allTeams.All(team => team.Code != code))
+			{
+				code = "unknown";
+			}
+
+			return allTeams.Single(team => team.Code == code);
+		}
 	}
 }
