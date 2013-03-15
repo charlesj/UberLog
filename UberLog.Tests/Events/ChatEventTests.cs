@@ -74,7 +74,8 @@ namespace UberLog.Tests.Events
         private class ChatEventInfo
         {
             public string LogText { get; set; }
-            public  string Message { get; set; }
+
+            public string Message { get; set; }
 
             public string SteamId { get; set; }
         }
