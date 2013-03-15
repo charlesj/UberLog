@@ -80,7 +80,7 @@ namespace UberLog.Events
 		/// <returns>
 		/// The <see cref="MatchCollection"/>.
 		/// </returns>
-		protected MatchCollection GetRegexMatches()
+		protected MatchCollection GetMatches()
 		{
 			return this.QuoteRegex.Matches(this.rawText);
 		}

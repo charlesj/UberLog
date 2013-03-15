@@ -53,7 +53,7 @@ namespace UberLog.Events
 		/// </summary>
 		public override void Parse()
 		{
-			var quotationMatches = this.GetRegexMatches(); // there should be 7 matches player, triggered, builtobject, (object, obj_*, )(position, position
+			var quotationMatches = this.GetMatches(); // there should be 7 matches player, triggered, builtobject, (object, obj_*, )(position, position
 			var playerString = quotationMatches[0].Value;
 			var objectString = quotationMatches[4].Value;
 			var positionString = quotationMatches[6].Value;

@@ -48,7 +48,7 @@ namespace UberLog.Events
 		/// </summary>
 		public override void Parse()
 	    {
-	        var matches = this.GetRegexMatches();
+	        var matches = this.GetMatches();
 	        var playerString = matches[0].Value;
 	        var message = matches[2].Value;
 

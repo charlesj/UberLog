@@ -58,7 +58,7 @@ namespace UberLog.Events
 		/// </summary>
 		public override void Parse()
 		{
-			var matches = this.GetRegexMatches(); // returns 9 matches
+			var matches = this.GetMatches(); // returns 9 matches
 			var playerString = matches[0].Value;
 			var pointNumberString = matches[4].Value;
 			var pointNameString = matches[6].Value;
