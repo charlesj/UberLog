@@ -32,7 +32,7 @@ namespace UberLog
 					    new Team { Name = "RED", Code = "Red" },
 					    new Team { Name = "BLU", Code = "Blue" },
 					    new Team { Name = "Unknown", Code = "unknown" },
-					    new Team { Name = "Unassigned", Code = "Unassigned" },
+					    new Team { Name = "Unassigned", Code = "unassigned" },
 					    new Team { Name = "Spectator", Code = "spectator" }
 				    };
 		}

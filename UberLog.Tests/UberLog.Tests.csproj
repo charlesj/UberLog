@@ -55,6 +55,8 @@
     <Compile Include="Events\ConnectedEventTests.cs" />
     <Compile Include="Events\CurrentScoreEventTests.cs" />
     <Compile Include="Events\DamageEventTests.cs" />
+    <Compile Include="Events\DominationEventTests.cs" />
+    <Compile Include="Events\EnteredGameEventTests.cs" />
     <Compile Include="Events\EventTestHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
