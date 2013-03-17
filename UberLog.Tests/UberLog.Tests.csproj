@@ -61,6 +61,7 @@
     <Compile Include="Events\ExtinguishedPlayerTests.cs" />
     <Compile Include="Events\FinalScoreEventTests.cs" />
     <Compile Include="Events\GameOverEventTests.cs" />
+    <Compile Include="Events\HealEventTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
