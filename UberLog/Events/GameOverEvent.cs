@@ -34,11 +34,17 @@ namespace UberLog.Events
 		public override string Keystone { get; protected set; }
 
 		/// <summary>
+		/// Gets or sets the reason.
+		/// </summary>
+		public string Reason { get; set; }
+
+		/// <summary>
 		/// The parse.
 		/// </summary>
 		public override void Parse()
 		{
-			throw new System.NotImplementedException();
+			var matches = this.GetMatches();
+			this.Reason = matches[2].Value;
 		}
 	}
 }
