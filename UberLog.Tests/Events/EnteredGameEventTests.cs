@@ -46,13 +46,13 @@ namespace UberLog.Tests.Events
 			get
 			{
 				return new List<EnteredGameEventInfo>
-					       {
-						       new EnteredGameEventInfo
-							       {
-								       LogText ="L 03/04/2013 - 20:58:16: \"radio.esg<21><STEAM_0:1:38993395><>\" entered the game",
-								       SteamId = "STEAM_0:1:38993395"
-							       }
-					       };
+				{
+					new EnteredGameEventInfo
+					{
+						LogText = "L 03/04/2013 - 20:58:16: \"radio.esg<21><STEAM_0:1:38993395><>\" entered the game",
+						SteamId = "STEAM_0:1:38993395"
+					}
+				};
 			}
 		}
 

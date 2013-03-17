@@ -43,10 +43,19 @@ namespace UberLog.Events
 		/// </summary>
 		public Player TargetPlayer { get; set; }
 
+		/// <summary>
+		/// Gets or sets the player position extinguishing someone.
+		/// </summary>
 		public Position PlayerPosition { get; set; }
 
+		/// <summary>
+		/// Gets or sets the target position of the person previously on fire.
+		/// </summary>
 		public Position TargetPosition { get; set; }
 
+		/// <summary>
+		/// Gets or sets the weapon used to extinguish.
+		/// </summary>
 		public GameObject Weapon { get; set; }
 
 		/// <summary>
