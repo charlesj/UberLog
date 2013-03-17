@@ -59,6 +59,7 @@
     <Compile Include="Events\EnteredGameEventTests.cs" />
     <Compile Include="Events\EventTestHelpers.cs" />
     <Compile Include="Events\ExtinguishedPlayerTests.cs" />
+    <Compile Include="Events\FinalScoreEventTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

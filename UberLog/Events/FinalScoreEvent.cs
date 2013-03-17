@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FileScoreEvent.cs" company="Josh Charles">
+// <copyright file="FinalScoreEvent.cs" company="Josh Charles">
 //   Licensed under the GPL.
 // </copyright>
 // <summary>
@@ -12,12 +12,12 @@ namespace UberLog.Events
 	/// <summary>
 	/// The file score event.
 	/// </summary>
-	public class FileScoreEvent : BaseEvent
+	public class FinalScoreEvent : BaseEvent
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="FileScoreEvent"/> class.
+		/// Initializes a new instance of the <see cref="FinalScoreEvent"/> class.
 		/// </summary>
-		public FileScoreEvent()
+		public FinalScoreEvent()
 		{
 			this.Keystone = "final score";
 			this.Name = "FinalScore";
@@ -34,11 +34,33 @@ namespace UberLog.Events
 		public override string Keystone { get; protected set; }
 
 		/// <summary>
+		/// Gets or sets the team.
+		/// </summary>
+		public Team Team { get; set; }
+
+		/// <summary>
+		/// Gets or sets the score.
+		/// </summary>
+		public int Score { get; set; }
+
+		/// <summary>
+		/// Gets or sets the player count.
+		/// </summary>
+		public int PlayerCount { get; set; }
+
+		/// <summary>
 		/// The parse.
 		/// </summary>
 		public override void Parse()
 		{
-			throw new System.NotImplementedException();
+			var matches = this.GetMatches();
+			var teamString = matches[0].Value;
+			var scoreString = matches[2].Value;
+			var playerCountString = matches[4].Value;
+
+			this.Team = Team.GetFromCode(teamString);
+			this.Score = int.Parse(scoreString);
+			this.PlayerCount = int.Parse(playerCountString);
 		}
 	}
 }

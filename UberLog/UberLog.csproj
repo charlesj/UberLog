@@ -52,7 +52,7 @@
     <Compile Include="Events\DominationEvent.cs" />
     <Compile Include="Events\EnteredGameEvent.cs" />
     <Compile Include="Events\ExtinguishedPlayerEvent.cs" />
-    <Compile Include="Events\FileScoreEvent.cs" />
+    <Compile Include="Events\FinalScoreEvent.cs" />
     <Compile Include="Events\GameOverEvent.cs" />
     <Compile Include="Events\HealEvent.cs" />
     <Compile Include="Events\IEvent.cs" />
